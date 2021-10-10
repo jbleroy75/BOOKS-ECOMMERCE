@@ -1,10 +1,11 @@
 <template>
   <div class="book">
-    <div v-if="livre !== undefined">
-      <h1>{{ livre.title }}</h1>
+    <div class="book-container" v-if="livre !== undefined">
       <img :src="'http://covers.openlibrary.org/b/id/' + livre.covers[0] + '-M.jpg'" alt="" />
-      <p>{{ livre.description }}</p>
-      <p><a v-for="author in livre.authors" :key="author" href=""></a></p>
+      <div class="description-container">
+        <h1>{{ livre.title }}</h1>
+        <p>{{ livre.description }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -25,4 +26,22 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.book-container {
+  display: flex;
+  justify-content: center;
+  img {
+    height: 360px;
+    width: 280px;
+    margin: 0 70px 0 0;
+  }
+
+  .description-container {
+    text-align: left;
+    p {
+      margin-top: 20px;
+      max-width: 40vw;
+    }
+  }
+}
+</style>
