@@ -30,8 +30,7 @@
       </div>
     </div>
 
-    <h2>Nos recommandations</h2>
-
+    <div class="themes-title"><h2>Nos recommandations</h2></div>
     <div class="books">
       <div
         class="book"
@@ -44,8 +43,17 @@
           :src="'http://covers.openlibrary.org/b/id/' + livre.cover_id + '-M.jpg'"
           alt=""
         />
-        <div class="cover-default" v-else>
-          <p>{{ livre.title }}</p>
+        <div>
+          <div class="title-book">
+            <p>{{ livre.title }}</p>
+          </div>
+          <div class="author-book">
+            <p>{{ livre.author }}</p>
+          </div>
+          <div class="note-book">
+            <p>{{ livre.note }}</p>
+          </div>
+          <div class="info_book"><a href="#">En savoir plus...</a></div>
         </div>
       </div>
     </div>
@@ -119,8 +127,8 @@ export default {
     min-width: 150px;
     height: 80px;
     background: white;
-    color: black;
-    border-radius: 15px;
+    color: white;
+    border-radius: 6px;
     margin: 0 5px;
     transition: 0.4s;
     cursor: pointer;
@@ -136,15 +144,14 @@ export default {
 
 .arrow {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 43px;
+  height: 43px;
   background: white;
   text-align: center;
   color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 15px;
   font-weight: bold;
   font-size: 25px;
   filter: drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.25));
@@ -153,23 +160,27 @@ export default {
   user-select: none;
   cursor: pointer;
   transition: 0.4s;
+  box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
 
   &:hover {
     transform: translate(0, -50%) scale(1.05);
   }
   &#arrow-left {
-    left: 30px;
+    left: 120px;
   }
   &#arrow-right {
-    right: 30px;
+    right: 120px;
   }
 }
 
 .slider {
   margin-top: 30px;
   position: relative;
+  border-radius: 7px;
   .slide {
     position: relative;
+
     h1 {
       position: absolute;
       top: 50%;
@@ -189,7 +200,11 @@ export default {
   }
 }
 
-h2 {
+.banniere-img > img {
+  border-radius: 7px;
+}
+
+.themes-title {
   text-align: left;
   margin: 30px 10vw 30px 10vw;
   border-bottom: 2px solid black;
@@ -237,10 +252,43 @@ h2 {
     min-width: 100%;
   }
 }
+
 @media (max-width: 700px) {
   .arrow {
     width: 35px;
     height: 35px;
   }
+}
+
+.title-book {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+  color: #000000;
+  margin-top: -100px;
+}
+
+.author-book {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #a4a4a4;
+}
+
+.note-book {
+  background: #ffc41f;
+}
+
+.info-book {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #a4a4a4;
 }
 </style>

@@ -81,7 +81,6 @@ export default {
   min-width: 510px;
   height: 100%;
 }
-
 .cart-transition-enter-active,
 .cart-transition-leave-active {
   transition: 0.5s;
