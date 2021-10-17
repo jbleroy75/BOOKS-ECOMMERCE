@@ -6,7 +6,7 @@
           <h1>
             <pre>{{ slide.title }}</pre>
           </h1>
-          <img :src="getSliderImgUrl(currentSlideId)" :alt="slide.title" />
+          <img :src="slide.img" :alt="slide.title" />
         </div>
       </div>
 
@@ -14,7 +14,7 @@
       <p id="arrow-right" class="arrow" @click="nextSlide()">&gt;</p>
     </div>
 
-    <h2>Nos themes</h2>
+    <h2>Nos themes <span @click="seeThemes()">Voir plus..</span></h2>
     <div class="themes">
       <div
         class="theme"
@@ -66,17 +66,22 @@ export default {
       slides: [
         {
           title: 'Comme\nune envie de lire',
+          img: '',
         },
         {
           title: 'Comme\nune envie de découvrir',
+          img: '',
         },
       ],
     };
   },
   created() {
+    for (let i = 0; i < this.slides.length; i++) {
+      this.slides[i].img = this.getSliderImgUrl(i + 1);
+    }
+
     this.axios.get('https://openlibrary.org/subjects/mystery_and_detective_stories.json?limit=20').then((res) => {
       this.livres = res.data.works;
-      console.log(this.livres);
       for (let i = 0; i < this.livres.length; i++) this.$parent.setPrice(this.livres[i]);
     });
   },
@@ -91,6 +96,10 @@ export default {
     previousSlide() {
       if (this.currentSlideId - 1 < 1) this.currentSlideId = this.slideLimit;
       else this.currentSlideId--;
+    },
+    seeThemes() {
+      this.$router.push('/themes');
+      window.scrollTo(0, 0);
     },
   },
 };
@@ -184,6 +193,12 @@ h2 {
   text-align: left;
   margin: 30px 10vw 30px 10vw;
   border-bottom: 2px solid black;
+  span {
+    font-size: 16px;
+    color: rgb(58, 136, 149);
+    cursor: pointer;
+    user-select: none;
+  }
 }
 
 .books {
@@ -220,6 +235,12 @@ h2 {
   img {
     height: 260px;
     min-width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  .arrow {
+    width: 35px;
+    height: 35px;
   }
 }
 </style>

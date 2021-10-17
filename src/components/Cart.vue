@@ -28,7 +28,7 @@
         <tfoot>
           <tr class="last-line">
             <td colspan="3"></td>
-            <td>Prix total :</td>
+            <td>Prix total:</td>
             <td>{{ $parent.formatPrice(totalPrice()) }}</td>
           </tr>
         </tfoot>
@@ -179,8 +179,37 @@ table {
   background: #ebf0f3;
   border-radius: 50%;
   box-shadow: 0px 1px 3px black;
+  user-select: none;
 }
 #empty-cart {
   margin-top: 100px;
+}
+
+@media (max-width: 1080px) {
+  table h2 {
+    font-size: 12px !important;
+  }
+  table p {
+    font-size: 10px !important;
+  }
+  table .total p {
+    font-size: 15px !important;
+    text-align: center !important;
+  }
+  table td img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  table .last-line td {
+    font-size: 15px !important;
+    text-align: center !important;
+  }
+  table td h2 {
+    padding: auto !important;
+  }
+  .remove-from-kart {
+    top: 0px !important;
+    left: 0px !important;
+  }
 }
 </style>

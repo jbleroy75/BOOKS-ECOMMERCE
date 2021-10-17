@@ -25,6 +25,11 @@ const routes = [
     name: 'Theme',
     component: () => import('../views/Theme.vue'),
   },
+  {
+    path: '/themes',
+    name: 'Themes',
+    component: () => import('../views/Themes.vue'),
+  },
 ];
 
 const router = new VueRouter({

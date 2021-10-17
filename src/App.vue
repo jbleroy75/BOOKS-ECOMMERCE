@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header :cart="cart" @toggle-cart="toggleCart" />
+    <Header :cart="cart" @toggle-cart="toggleCart" @quit-cart="quitCart" />
 
     <div v-if="isCartDisplay" id="cart-background" @click="toggleCart"></div>
     <transition name="cart-transition">
@@ -49,6 +49,9 @@ export default {
     toggleCart() {
       this.isCartDisplay = !this.isCartDisplay;
     },
+    quitCart() {
+      this.isCartDisplay = false;
+    },
     setPrice(element) {
       element.price = 6 + (element.title.length % 5) + ((0.1 * element.title.length) % 8);
       element.price = Math.round((element.price + Number.EPSILON) * 100) / 100;
@@ -65,16 +68,17 @@ export default {
 #cart-background {
   background: rgba(0, 0, 0, 0.404);
   position: fixed;
-  height: 100vw;
-  width: 98vw;
+  height: 100vh;
+  width: 100vw;
   z-index: 10;
 }
 #cart {
   position: fixed;
   right: 0;
-  z-index: 11;
+  z-index: 9999;
   background: whitesmoke;
   width: 40vw;
+  min-width: 510px;
   height: 100%;
 }
 
@@ -87,6 +91,13 @@ export default {
 }
 .cart-transition-leave-to {
   transform: translateX(100%);
+}
+
+@media (max-width: 1080px) {
+  #cart {
+    width: 100vw;
+    min-width: auto;
+  }
 }
 </style>
 

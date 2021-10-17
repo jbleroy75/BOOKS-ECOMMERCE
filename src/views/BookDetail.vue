@@ -1,5 +1,6 @@
 <template>
   <div class="book">
+    <h3 @click="$router.go(-1)">&lt; Go back</h3>
     <div class="book-container" v-if="livre !== undefined">
       <img
         v-if="livre.cover_id !== null"
@@ -12,8 +13,8 @@
 
       <div class="description-container">
         <h1>{{ livre.title }}</h1>
-        <p>{{ livre.description }}</p>
-        <p>{{ $parent.formatPrice(livre.price) }}</p>
+        <p>{{ getDescription(livre.description) }}</p>
+        <p class="price">{{ $parent.formatPrice(livre.price) }}</p>
         <button class="add" v-if="!$parent.isInCart(livre)" @click="$parent.addToCart(livre)">Add to Cart</button>
         <button class="remove" v-else @click="$parent.removeFromCart(livre)">Remove from Cart</button>
       </div>
@@ -29,6 +30,15 @@ export default {
       livre: undefined,
     };
   },
+  methods: {
+    getDescription(description) {
+      if (description.value !== undefined) description = description.value;
+      if (typeof description === 'string') {
+        return description.split('----------')[0].split('Contains:')[0];
+      }
+      return description;
+    },
+  },
   mounted() {
     this.axios.get('https://openlibrary.org/works/' + this.$route.params.id + '.json').then((res) => {
       this.livre = res.data;
@@ -41,6 +51,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.book h3 {
+  text-align: left;
+  margin: 15px 20vw;
+  cursor: pointer;
+  user-select: none;
+  color: #3a8895;
+}
 button {
   font-family: 'Sansita Swashed', cursive;
   transition: 0.2s;
@@ -67,7 +84,9 @@ button {
 .book-container {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 10px;
   img {
     height: 360px;
     width: 280px;
@@ -83,12 +102,39 @@ button {
     width: 280px;
     margin: 0 70px 0 0;
   }
-
+  .price {
+    font-weight: bold;
+    font-size: 20px;
+  }
   .description-container {
     text-align: left;
     p {
       margin-top: 20px;
       max-width: 40vw;
+    }
+  }
+}
+@media (max-width: 560px) {
+  .book-container {
+    flex-direction: column-reverse;
+    img {
+      height: 260px;
+      width: 180px;
+      margin: 20px 0;
+      border: solid black 2px;
+    }
+    .description-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      p {
+        margin-top: 20px;
+        max-width: none;
+        padding: 0 20px;
+      }
     }
   }
 }
