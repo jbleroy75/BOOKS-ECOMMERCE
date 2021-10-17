@@ -21,7 +21,10 @@
         v-for="theme in themes"
         :key="theme.key"
         @click="$router.push('/theme/' + theme.key)"
-        :style="{ backgroundColor: '#' + (((1 << 24) * Math.random()) | 0).toString(16) }"
+        :style="{
+          backgroundColor:
+            'hsl(' + 360 * Math.random() + ',' + (25 + 70 * Math.random()) + '%,' + (80 + 10 * Math.random()) + '%)',
+        }"
       >
         <p>{{ theme.title }}</p>
       </div>
@@ -73,6 +76,8 @@ export default {
   created() {
     this.axios.get('https://openlibrary.org/subjects/mystery_and_detective_stories.json?limit=20').then((res) => {
       this.livres = res.data.works;
+      console.log(this.livres);
+      for (let i = 0; i < this.livres.length; i++) this.$parent.setPrice(this.livres[i]);
     });
   },
   methods: {
@@ -152,6 +157,7 @@ export default {
 }
 
 .slider {
+  margin-top: 30px;
   position: relative;
   .slide {
     position: relative;
@@ -169,7 +175,7 @@ export default {
     }
     img {
       max-height: 80vh;
-      width: 80vw;
+      width: 79vw;
     }
   }
 }
@@ -177,7 +183,7 @@ export default {
 h2 {
   text-align: left;
   margin: 30px 10vw 30px 10vw;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid black;
 }
 
 .books {

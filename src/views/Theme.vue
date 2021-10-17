@@ -1,7 +1,13 @@
 <template>
   <div class="home">
     <div v-if="theme !== null">
-      <div class="slide" :style="{ backgroundColor: '#' + (((1 << 24) * Math.random()) | 0).toString(16) }">
+      <div
+        class="slide"
+        :style="{
+          backgroundColor:
+            'hsl(' + 360 * Math.random() + ',' + (25 + 70 * Math.random()) + '%,' + (80 + 10 * Math.random()) + '%)',
+        }"
+      >
         <h1>{{ theme.name }} ({{ theme.ebook_count }} results)</h1>
       </div>
 
@@ -37,7 +43,7 @@ export default {
     };
   },
   mounted() {
-    this.axios.get('https://openlibrary.org/subjects/' + this.$route.params.theme + '.json?limit=20').then((res) => {
+    this.axios.get('https://openlibrary.org/subjects/' + this.$route.params.theme + '.json?limit=30').then((res) => {
       this.theme = res.data;
     });
   },
@@ -59,6 +65,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+button {
+  font-family: 'Sansita Swashed', cursive;
+  transition: 0.2s;
+  font-size: 20px;
+  margin: 30px 0 40px 0;
+  cursor: pointer;
+  height: 35px;
+  width: 200px;
+  border-radius: 5px;
+  border: solid rgb(0, 0, 0) 2px;
+  color: black;
+  &:hover {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.84);
+  }
+}
+
 .slide {
   margin: 15px 10vw;
   border-radius: 15px;
