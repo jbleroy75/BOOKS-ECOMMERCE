@@ -2,7 +2,7 @@
   <div class="home">
     <div class="slider">
       <div class="slide" v-for="(slide, index) in slides" :key="slide.image">
-        <div v-if="index + 1 === currentSlideId">
+        <div v-show="index + 1 === currentSlideId">
           <h1>
             <pre>{{ slide.title }}</pre>
           </h1>
@@ -14,7 +14,7 @@
       <p id="arrow-right" class="arrow" @click="nextSlide()">&gt;</p>
     </div>
 
-    <h2>Nos themes <span @click="seeThemes()">Voir plus..</span></h2>
+    <h2 class="themes-title">Nos themes <span @click="seeThemes()">Voir plus..</span></h2>
     <div class="themes">
       <div
         class="theme"
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="themes-title"><h2>Nos recommandations</h2></div>
+    <h2 class="themes-title">Nos recommandations</h2>
     <div class="books">
       <div
         class="book"
@@ -43,18 +43,7 @@
           :src="'http://covers.openlibrary.org/b/id/' + livre.cover_id + '-M.jpg'"
           alt=""
         />
-        <div>
-          <div class="title-book">
-            <p>{{ livre.title }}</p>
-          </div>
-          <div class="author-book">
-            <p>{{ livre.author }}</p>
-          </div>
-          <div class="note-book">
-            <p>{{ livre.note }}</p>
-          </div>
-          <div class="info_book"><a href="#">En savoir plus...</a></div>
-        </div>
+        <p>{{ livre.price }}€</p>
       </div>
     </div>
   </div>
@@ -223,6 +212,7 @@ export default {
   flex-wrap: wrap;
   padding: 0 10vw;
   .book {
+    position: relative;
     height: 260px;
     width: 180px;
     display: flex;
@@ -232,8 +222,28 @@ export default {
     margin: 5px;
     cursor: pointer;
     transition: 0.4s;
+
+    p {
+      position: absolute;
+      top: -10px;
+      right: -5px;
+      width: 50px;
+      height: 50px;
+      font-family: Roboto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100%;
+      background: white;
+      opacity: 0;
+      transition: 0.4s;
+    }
+
     &:hover {
       transform: scale(1.05);
+      p {
+        opacity: 1;
+      }
     }
 
     .cover-default {

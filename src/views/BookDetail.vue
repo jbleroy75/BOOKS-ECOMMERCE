@@ -32,6 +32,7 @@ export default {
   },
   methods: {
     getDescription(description) {
+      if (description == undefined) return '';
       if (description.value !== undefined) description = description.value;
       if (typeof description === 'string') {
         return description.split('----------')[0].split('Contains:')[0];
