@@ -30,19 +30,19 @@ export default {
         {
           title: 'Comment ça marche ?',
           description:
-            "Tout se passe dans la page map. Ici le manager peut ajouter, modifier ou bien supprimer un ascenseur. De plus, il peut observer l'état de l'ascenseur (maintenance, réparation) sur la map.",
+            "Notre Service s'adresse aux personnes qui souhaitent trouver l'inspiration, apprendre et progresser chaque jour. Que vous souhaitiez progresser professionnellement, gagner en efficacité, être plus heureux ou simplement apprendre de nouvelles choses.Notre Service est un service qui permet d'accéder aux idées des meilleurs livres de non-fiction, mais aussi des documentaires, des conférences… en seulement quelques minutes et sur tous les supports ",
           show: false,
         },
         {
           title: 'Quel est le but de notre application ?',
           description:
-            'Le but de notre application est de permettre de faciliter la gestion des ascenseurs entre les différents rôle (manager, technicien, réparateur) afin de veiller à ce que les ascenseurs restent le moins longtemps en panne. ',
+            'Nous avons créé notre service pour les esprits curieux qui ont besoin d'apprendre et de progresser. Contactez-nous si vous avez des difficultés pour apprendre, nous sommes là pour vous aider à atteindre votre objectif !',
           show: false,
         },
         {
           title: 'Pourquoi nous ?',
           description:
-            'Nous choisir serait la meilleure option pour vous. En effet, nous vous proposons différentes offres afin que tout le monde puisse trouver son son compte. De plus si vous avez un soucis, il suffit de nous contacter et nous ferons en sorte de régler votre problème le plus rapidement possible ',
+            'Nous sommes convaincus que la lecture est vitale pour progresser et devenir une meilleure personne. notre site internet vous permet d'accéder aux idées des meilleurs livres, et vous donne l'inspiration nécessaire pour générer ce progrès. Notre format vous permet d'optimiser vos journées au maximum, en accédant à du contenu à forte valeur ajoutée à tout moment de la journée, quelles que soient vos contraintes. Plutôt que de consulter les réseaux sociaux à longueur de journées, vous avez désormais accès à la crème des livres de non-fiction.',
           show: false,
         },
       ],
